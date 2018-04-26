@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.jhacks.vrclassroom.MainActivity"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp"
-    android:background="@drawable/rectangle">
+    tools:layout_editor_absoluteY="0dp">
+    <!--android:background="@drawable/rectangle">-->
 
     <ImageView
         android:id="@+id/logo"
