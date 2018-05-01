@@ -14,13 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/coursierge"
+        android:background="@drawable/newlogo"
         android:contentDescription="@null"
         android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/coursierge" />
+        app:srcCompat="@drawable/newlogo" />
 
     <Button
         android:id="@+id/professor"
