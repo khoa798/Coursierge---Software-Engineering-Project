@@ -7,7 +7,11 @@
     tools:context="com.jhacks.vrclassroom.MainActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp"
+<<<<<<< HEAD
     android:background="@drawable/minimal">
+=======
+    android:background="@drawable/rectangle">
+>>>>>>> 38c977eae8c3df30f3b7a01919046b84105fd1c9
 
     <ImageView
         android:id="@+id/logo"
