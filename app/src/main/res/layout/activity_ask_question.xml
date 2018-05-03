@@ -33,7 +33,7 @@
                 android:id="@+id/textViewA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A"
+                android:text="@string/a"
                 android:textSize="18sp" />
 
             <EditText
@@ -56,12 +56,12 @@
                 android:id="@+id/textViewB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="B"
+                android:text="@string/b"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextB"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -79,7 +79,7 @@
                 android:id="@+id/textViewC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C"
+                android:text="@string/c"
                 android:textSize="18sp" />
 
             <EditText
@@ -102,7 +102,7 @@
                 android:id="@+id/textViewD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="D"
+                android:text="@string/d"
                 android:textSize="18sp" />
 
             <EditText
@@ -117,20 +117,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:contentDescription="@null"
-        app:srcCompat="@drawable/googledaydream"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="254dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="300dp"
         android:background="@drawable/qst"
         android:onClick="sendQuestion"
         app:layout_constraintEnd_toStartOf="parent"

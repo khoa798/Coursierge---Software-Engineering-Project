@@ -11,15 +11,15 @@
 
     <ImageView
         android:id="@+id/imageViewProf"
-        android:layout_width="153dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="90dp"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="70dp"
         android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/prof" />
+        app:srcCompat="@drawable/professor" />
 
     <EditText
         android:id="@+id/profSesId"
@@ -33,6 +33,7 @@
         android:inputType="textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
