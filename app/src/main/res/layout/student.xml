@@ -7,7 +7,7 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp"
     tools:context="com.jhacks.vrclassroom.Student"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/minimal">
 
     <ImageView
         android:id="@+id/imageViewStu"
@@ -32,6 +32,7 @@
         android:hint="Enter Course Title"
         android:inputType="textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColorHint="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
