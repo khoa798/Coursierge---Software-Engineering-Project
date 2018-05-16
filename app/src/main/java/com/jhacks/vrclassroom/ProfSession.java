@@ -53,6 +53,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    // ADD comments here
                     API_KEY = response.getString("apiKey");
                     SESSION_ID = response.getString("sessionId");
                     TOKEN = response.getString("token");
@@ -80,6 +81,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         }));
     }
 
+// Initial boot-up method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
