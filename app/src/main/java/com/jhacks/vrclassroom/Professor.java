@@ -37,4 +37,15 @@ public class Professor extends AppCompatActivity {
             startActivity(startSession);
         }
     }
+
+    public void onClickStartStream(View v) {
+        EditText streamId = findViewById(R.id.profSesId);
+        String streamIdString = streamId.getText().toString();
+
+        if (streamIdString.matches("")) {
+            Toast.makeText(this, "Please insert a Class Name", Toast.LENGTH_LONG).show();
+        } else {
+            //start the stream here
+        }
+    }
 }
