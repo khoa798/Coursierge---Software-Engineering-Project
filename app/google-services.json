@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "627369111256",
+    "firebase_url": "https://coursierge-eff49.firebaseio.com",
+    "project_id": "coursierge-eff49",
+    "storage_bucket": "coursierge-eff49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627369111256:android:2d1d23dca7007123",
+        "android_client_info": {
+          "package_name": "com.cmps115.coursierge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627369111256-o3vutncdchl6jthppfse5h70o0vuprso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [{ "current_key": "" }],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
