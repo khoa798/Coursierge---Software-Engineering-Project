@@ -5,11 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context="com.jhacks.vrclassroom.ViewQuestions"
 <<<<<<< HEAD
     android:background="@drawable/minimal">
 =======
     android:background="@drawable/minimal">                                      
 >>>>>>> 71571bc8df1119cea326fd07274f6057e4f3fc35
+=======
+    tools:context="com.jhacks.vrclassroom.ViewQuestions">                                      
+>>>>>>> 8bba2e6a810f16714c76112e39e622ea82dffbda
 
 </android.support.constraint.ConstraintLayout>
