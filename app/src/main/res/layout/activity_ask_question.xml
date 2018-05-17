@@ -22,6 +22,7 @@
             android:hint="Question"
             android:inputType="textPersonName"
             android:textSize="20sp"
+            android:textColor="#ffffff"
             android:textColorHint="#ffffff"/>
 
         <LinearLayout
@@ -34,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/a"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextA"
@@ -44,6 +46,7 @@
                 android:ems="10"
                 android:hint="Choice A"
                 android:inputType="textPersonName"
+                android:textColor="#ffffff"
                 android:textColorHint="#ffffff"/>
         </LinearLayout>
 
@@ -57,7 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/b"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextB"
@@ -67,6 +71,7 @@
                 android:ems="10"
                 android:hint="Choice B"
                 android:inputType="textPersonName"
+                android:textColor="#ffffff"
                 android:textColorHint="#ffffff"/>
         </LinearLayout>
 
@@ -80,7 +85,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/c"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextC"
@@ -90,6 +96,7 @@
                 android:ems="10"
                 android:hint="Choice C"
                 android:inputType="textPersonName"
+                android:textColor="#ffffff"
                 android:textColorHint="#ffffff"/>
         </LinearLayout>
 
@@ -103,7 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/d"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextD"
@@ -113,6 +121,7 @@
                 android:ems="10"
                 android:hint="Choice D"
                 android:inputType="textPersonName"
+                android:textColor="#ffffff"
                 android:textColorHint="#ffffff"/>
         </LinearLayout>
     </LinearLayout>
