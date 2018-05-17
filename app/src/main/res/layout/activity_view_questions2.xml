@@ -6,6 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jhacks.vrclassroom.ViewQuestions"
+<<<<<<< HEAD
     android:background="@drawable/minimal">
+=======
+    android:background="@drawable/minimal">                                      
+>>>>>>> 71571bc8df1119cea326fd07274f6057e4f3fc35
 
 </android.support.constraint.ConstraintLayout>
