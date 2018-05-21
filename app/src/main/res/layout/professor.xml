@@ -44,18 +44,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/startsesh"
-        android:backgroundTint="bsaasASAa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profSesId" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/startStream"
         android:layout_width="354dp"
         android:layout_height="63dp"
         android:layout_marginBottom="175dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="bsaasASAa"
         android:text="Start Stream"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

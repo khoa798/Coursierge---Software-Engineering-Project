@@ -20,7 +20,6 @@ public class ScreenSharingCapturer extends BaseVideoCapturer {
 
     private Bitmap bmp;
     private Canvas canvas;
-
     private Handler mHandler = new Handler();
 
     private Runnable newFrame = new Runnable() {
@@ -48,18 +47,15 @@ public class ScreenSharingCapturer extends BaseVideoCapturer {
                     canvas = new Canvas(bmp);
                     frame = new int[width * height];
                 }
-                canvas.save(Canvas.MATRIX_SAVE_FLAG);
+                canvas.save(Canvas.ALL_SAVE_FLAG);
                 canvas.translate(-contentView.getScrollX(), - contentView.getScrollY());
                 contentView.draw(canvas);
 
                 bmp.getPixels(frame, 0, width, 0, 0, width, height);
-
                 provideIntArrayFrame(frame, ARGB, width, height, 0, false);
 
                 canvas.restore();
-
                 mHandler.postDelayed(newFrame, 1000 / fps);
-
             }
         }
     };
@@ -70,9 +66,16 @@ public class ScreenSharingCapturer extends BaseVideoCapturer {
     }
 
     @Override
-    public void init() {
+    public void init() {}
 
-    }
+    @Override
+    public void destroy() {}
+
+    @Override
+    public void onResume() {}
+
+    @Override
+    public void onPause() {}
 
     @Override
     public int startCapture() {
@@ -104,20 +107,4 @@ public class ScreenSharingCapturer extends BaseVideoCapturer {
         settings.format = ARGB;
         return settings;
     }
-
-    @Override
-    public void destroy() {
-
-    }
-
-    @Override
-    public void onPause() {
-
-    }
-
-    @Override
-    public void onResume() {
-
-    }
-
 }

@@ -16,10 +16,17 @@ public class Professor extends AppCompatActivity {
         setContentView(R.layout.professor);
 
         Button startSes = findViewById(R.id.startSes);
+        Button startStream = findViewById(R.id.startStream);
         startSes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onClickStartSes(view);
+            }
+        });
+        startStream.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickStartStream(view);
             }
         });
     }
@@ -45,6 +52,9 @@ public class Professor extends AppCompatActivity {
         if (streamIdString.matches("")) {
             Toast.makeText(this, "Please insert a Class Name", Toast.LENGTH_LONG).show();
         } else {
+            Intent startStream = new Intent(Professor.this, ProfSession.class);
+            startStream.putExtra("profSesId", streamIdString);
+            startActivity(startStream);
             //start the stream here
         }
     }
