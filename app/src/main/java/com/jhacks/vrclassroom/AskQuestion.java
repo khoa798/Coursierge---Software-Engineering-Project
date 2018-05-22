@@ -30,27 +30,22 @@ public class AskQuestion extends AppCompatActivity {
         allChoices = grabValidChoices();
         questionEditText = findViewById(R.id.questionText);
         question = questionEditText.getText().toString().trim();
-        String text = "No Question Asked!";
-        Toast mToastToShow; // Notifier for question input
-        String referenceTagQuestions = "";
+        Toast confirmQuestion; // Notifier for question input
         final String logTag = "Professor database: ";
 
         // Make sure a question field has input (Question is being asked)
-        if (question.length() < 0)
+        if (question.length() == 0)
         {
-
-            mToastToShow = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
-            mToastToShow.show();
+            String text = "No Question Asked!";
+            confirmQuestion = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
+            confirmQuestion.show();
         }
-        else {
-            referenceTagQuestions = question;
-            mToastToShow = Toast.makeText(AskQuestion.this, "Question sent!", Toast.LENGTH_SHORT);
-
-
-
+        else
+        {
+            String myQuestionTag = question;
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference(referenceTagQuestions);
+            DatabaseReference myRef = database.getReference(myQuestionTag);
             // Read from the database
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -70,13 +65,21 @@ public class AskQuestion extends AppCompatActivity {
 
             // If we do have choices to choose from then save the data to the database.
             if (allChoices.length() > 0) {
-                // Place holder for now - Set value of reference to contain these values
                 myRef.setValue(allChoices);
+                String text = "Question sent!";
+                confirmQuestion = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
+                confirmQuestion.show();
+                finish();
+            }
+            else
+            {
+                String confirmChoices = "No choices!";
+                confirmQuestion = Toast.makeText(AskQuestion.this, confirmChoices, Toast.LENGTH_SHORT);
+                confirmQuestion.show();
             }
 
 
-            mToastToShow.show();
-            finish();
+
         }
 
 
@@ -104,13 +107,33 @@ public class AskQuestion extends AppCompatActivity {
         // Check if there was an option typed in for choices.
         // If so, concatenate to be used later.
         if (optionA.length() > 0)
-            choicesToSend = choicesToSend + "," + optionA;
-        if (optionB.length() >0)
-            choicesToSend = choicesToSend + "," + optionB;
-        if (optionC.length() >0)
-            choicesToSend = choicesToSend + "," + optionC;
-        if (optionD.length() >0)
-            choicesToSend = choicesToSend + "," + optionD;
+        {
+            if (choicesToSend.length() == 0)
+                choicesToSend = optionA;
+            else
+                choicesToSend = choicesToSend + "," + optionA;
+        }
+        if (optionB.length() > 0)
+        {
+            if (choicesToSend.length() == 0)
+                choicesToSend = optionB;
+            else
+                choicesToSend = choicesToSend + "," + optionB;
+        }
+        if (optionC.length() > 0)
+        {
+            if (choicesToSend.length() == 0)
+                choicesToSend = optionC;
+            else
+                choicesToSend = choicesToSend + "," + optionC;
+        }
+        if (optionD.length() > 0)
+        {
+            if (choicesToSend.length() == 0)
+                choicesToSend = optionD;
+            else
+                choicesToSend = choicesToSend + "," + optionD;
+        }
 
         return choicesToSend;
     }
