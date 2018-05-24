@@ -28,6 +28,8 @@
         <activity
             android:name=".ProfSession"
             android:label="Streaming" />
+        <activity android:name=".ProfStreamSession"
+            android:label="ScreenSharing" />
         <activity android:name=".ProfMenu" />
         <activity android:name=".AskQuestion"></activity>
     </application>

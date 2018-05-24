@@ -3,10 +3,13 @@ package com.jhacks.vrclassroom;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import static com.android.volley.VolleyLog.TAG;
 
 public class Professor extends AppCompatActivity {
 
@@ -26,6 +29,7 @@ public class Professor extends AppCompatActivity {
         startStream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Toast.makeText(getApplicationContext(), "Calling screen share listener!", Toast.LENGTH_LONG).show();
                 onClickStartStream(view);
             }
         });
@@ -52,10 +56,9 @@ public class Professor extends AppCompatActivity {
         if (streamIdString.matches("")) {
             Toast.makeText(this, "Please insert a Class Name", Toast.LENGTH_LONG).show();
         } else {
-            Intent startStream = new Intent(Professor.this, ProfSession.class);
+            Intent startStream = new Intent(Professor.this, ProfStreamSession.class);
             startStream.putExtra("profSesId", streamIdString);
             startActivity(startStream);
-            //start the stream here
         }
     }
 }

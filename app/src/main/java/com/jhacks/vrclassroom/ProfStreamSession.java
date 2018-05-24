@@ -1,7 +1,9 @@
 package com.jhacks.vrclassroom;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,17 +42,18 @@ import static com.android.volley.VolleyLog.TAG;
 public class ProfStreamSession extends AppCompatActivity implements EasyPermissions.PermissionCallbacks, Session.SessionListener, Publisher.PublisherListener {
     private static final int RC_SETTINGS_SCREEN_PERM = 123;
     private static final int RC_VIDEO_APP_PERM = 124;
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = "screen-sharing " + MainActivity.class.getSimpleName();
 
-    private static String API_KEY, SESSION_ID, TOKEN, NAME;
+    private static String API_KEY, SESSION_ID, TOKEN, NAME, METADATA;
 
     private Session mSession;
     private Publisher mPublisher;
 
-    private FrameLayout mPublisherViewContainer;
-    private FrameLayout mWebViewContainer;
+    private FrameLayout mPublisherViewContainer; //RelativeLayout?
+    private FrameLayout mWebViewContainer; //WebView? --> FrameLayout
 
     public void fetchSessionConnectionData() {
+        Log.d(TAG, "fetching Session Connection data... ");
         RequestQueue reqQueue = Volley.newRequestQueue(this);
         reqQueue.add(new JsonObjectRequest(Request.Method.GET,
                 "https://vr-classroom.herokuapp.com" + "/room/" + NAME,
@@ -82,59 +85,61 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
             }
         }));
     }
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prof_session);
 
-        mPublisherViewContainer = (FrameLayout) findViewById(R.id.publisher_container);
-        mWebViewContainer = (FrameLayout) findViewById(R.id.publisher_container);
+        mPublisherViewContainer = findViewById(R.id.publisher_container);
+        mWebViewContainer = findViewById(R.id.publisher_container);
         requestPermissions();
     }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause");
-        super.onPause();
-        if (mSession == null) {
-            return;
-        }
-        mSession.onPause();
-
-        if (isFinishing()) {
-            disconnectSession();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        Log.d(TAG, "onResume");
-        super.onResume();
-        if (mSession == null) {
-            return;
-        }
-        mSession.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        disconnectSession();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
+//
+//    @Override
+//    protected void onPause() {
+//        Log.d(TAG, "onPause");
+//        super.onPause();
+//        if (mSession == null) {
+//            return;
+//        }
+//        mSession.onPause();
+//
+//        if (isFinishing()) {
+//            disconnectSession();
+//        }
+//        finish();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        Log.d(TAG, "onResume");
+//        super.onResume();
+//        if (mSession == null) {
+//            return;
+//        }
+//        mSession.onResume();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        Log.d(TAG, "onDestroy");
+//        disconnectSession();
+//        super.onDestroy();
+//        finish();
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+//    }
+//
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         Log.d(TAG, "onPermissionsGranted:" + requestCode + ":" + perms.size());
     }
-
+//
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         Log.d(TAG, "onPermissionsDenied:" + requestCode + ":" + perms.size());
@@ -150,11 +155,12 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
                     .show();
         }
     }
-
+//
     @AfterPermissionGranted(RC_VIDEO_APP_PERM)
     private void requestPermissions() {
         String[] perms = { Manifest.permission.INTERNET, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO };
         if (EasyPermissions.hasPermissions(this, perms)) {
+            mPublisherViewContainer = findViewById(R.id.publisher_container);
             fetchSessionConnectionData();
             mSession = new Session.Builder(ProfStreamSession.this, API_KEY, SESSION_ID).build();
             mSession.setSessionListener(this);
@@ -163,7 +169,7 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
             EasyPermissions.requestPermissions(this, "This app needs access to your camera and mic to make video calls", RC_VIDEO_APP_PERM, perms);
         }
     }
-
+//
     @Override
     public void onConnected(Session session) {
         Log.d(TAG, "onConnected: Connected to session " + session.getSessionId());
@@ -189,63 +195,78 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
 
         mSession.publish(mPublisher);
     }
-
+//
     @Override
     public void onDisconnected(Session session) {
         Log.d(TAG, "onDisconnected: disconnected from session " + session.getSessionId());
 
         mSession = null;
     }
-
+//
     @Override
     public void onError(Session session, OpentokError opentokError) {
         Log.d(TAG, "onError: Error (" + opentokError.getMessage() + ") in session " + session.getSessionId());
 
-        Toast.makeText(this, "Session error. See the logcat please.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Session error. See the logcat please.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "(" + opentokError.getMessage() + ")", Toast.LENGTH_LONG).show();
         finish();
     }
-
+//
     @Override
     public void onStreamReceived(Session session, Stream stream) {
         Log.d(TAG, "onStreamReceived: New stream " + stream.getStreamId() + " in session " + session.getSessionId());
     }
-
+//
     @Override
     public void onStreamDropped(Session session, Stream stream) {
         Log.d(TAG, "onStreamDropped: Stream " + stream.getStreamId() + " dropped from session " + session.getSessionId());
     }
-
+//
     @Override
     public void onStreamCreated(PublisherKit publisherKit, Stream stream) {
         Log.d(TAG, "onStreamCreated: Own stream " + stream.getStreamId() + " created");
+        METADATA = mSession.getConnection().getData();
+        Log.i(LOG_TAG, "METADATA::: " + METADATA);
     }
-
+//
     @Override
     public void onStreamDestroyed(PublisherKit publisherKit, Stream stream) {
         Log.d(TAG, "onStreamDestroyed: Own stream " + stream.getStreamId() + " destroyed");
     }
-
+//
     @Override
     public void onError(PublisherKit publisherKit, OpentokError opentokError) {
         Log.d(TAG, "onError: Error (" + opentokError.getMessage() + ") in publisher");
 
-        Toast.makeText(this, "Session error. See the logcat please.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Session error. See the logcat please.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "(" + opentokError.getMessage() + ")", Toast.LENGTH_LONG).show();
         finish();
     }
-
-    private void disconnectSession() {
-        if (mSession == null) {
-            return;
-        }
-
-        if (mPublisher != null) {
-            mPublisherViewContainer.removeView(mPublisher.getView());
-            mSession.unpublish(mPublisher);
-            mPublisher.destroy();
-            mPublisher = null;
-        }
-        mSession.disconnect();
-    }
+//
+//    private void disconnectSession() {
+//        if (mSession == null) {
+//            return;
+//        }
+//
+//        if (mPublisher != null) {
+//            mPublisherViewContainer.removeView(mPublisher.getView());
+//            mSession.unpublish(mPublisher);
+//            mPublisher.destroy();
+//            mPublisher = null;
+//        }
+//        mSession.disconnect();
+//    }
+//
+//    // Back disconnects session
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Toast.makeText(this, "Disconnected from Session", Toast.LENGTH_SHORT).show();
+//        METADATA = mSession.getConnection().getData();
+//        Log.i(LOG_TAG, "METADATA::: " + METADATA);
+//        mSession.disconnect();
+//        finish();
+//    }
 
 
 }
