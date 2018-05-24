@@ -1,18 +1,13 @@
 package com.jhacks.vrclassroom;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -93,6 +88,8 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
 
         mPublisherViewContainer = findViewById(R.id.publisher_container);
         mWebViewContainer = findViewById(R.id.publisher_container);
+        Bundle extras = getIntent().getExtras();
+        NAME = extras.getString("profSesId");
         requestPermissions();
     }
 //
@@ -129,12 +126,12 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
 //        finish();
 //    }
 //
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-//    }
-//
+    @Override
+   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+      super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+      EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+   }
+
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         Log.d(TAG, "onPermissionsGranted:" + requestCode + ":" + perms.size());
@@ -162,9 +159,11 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
         if (EasyPermissions.hasPermissions(this, perms)) {
             mPublisherViewContainer = findViewById(R.id.publisher_container);
             fetchSessionConnectionData();
+            /*
             mSession = new Session.Builder(ProfStreamSession.this, API_KEY, SESSION_ID).build();
             mSession.setSessionListener(this);
             mSession.connect(TOKEN);
+            */
         } else {
             EasyPermissions.requestPermissions(this, "This app needs access to your camera and mic to make video calls", RC_VIDEO_APP_PERM, perms);
         }
@@ -241,6 +240,11 @@ public class ProfStreamSession extends AppCompatActivity implements EasyPermissi
         //Toast.makeText(this, "Session error. See the logcat please.", Toast.LENGTH_LONG).show();
         Toast.makeText(this, "(" + opentokError.getMessage() + ")", Toast.LENGTH_LONG).show();
         finish();
+    }
+
+    public void onClickMore(View view){
+        Intent intent = new Intent(this, ProfMenu.class);
+        startActivity(intent);
     }
 //
 //    private void disconnectSession() {
