@@ -7,19 +7,19 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp"
     tools:context="com.jhacks.vrclassroom.Student"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/minimal">
 
     <ImageView
         android:id="@+id/imageViewStu"
-        android:layout_width="133dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="90dp"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="70dp"
         android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/stu" />
+        app:srcCompat="@drawable/student" />
 
     <EditText
         android:id="@+id/studSesId"
@@ -32,6 +32,8 @@
         android:hint="Enter Course Title"
         android:inputType="textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,8 +42,8 @@
         android:id="@+id/joinSes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/joinsesh"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/joinsessionbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studSesId" />

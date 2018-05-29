@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jhacks.vrclassroom.AskQuestion"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/minimal">
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -20,7 +21,9 @@
             android:ems="10"
             android:hint="Question"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,17 +34,20 @@
                 android:id="@+id/textViewA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A"
-                android:textSize="18sp" />
+                android:text="@string/a"
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextA"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Choice A"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"/>
         </LinearLayout>
 
         <LinearLayout
@@ -53,17 +59,20 @@
                 android:id="@+id/textViewB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="B"
-                android:textSize="18sp" />
+                android:text="@string/b"
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextB"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Choice B"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"/>
         </LinearLayout>
 
         <LinearLayout
@@ -75,17 +84,20 @@
                 android:id="@+id/textViewC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C"
-                android:textSize="18sp" />
+                android:text="@string/c"
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextC"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Choice C"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"/>
         </LinearLayout>
 
         <LinearLayout
@@ -97,37 +109,30 @@
                 android:id="@+id/textViewD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="D"
-                android:textSize="18sp" />
+                android:text="@string/d"
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
 
             <EditText
                 android:id="@+id/editTextD"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Choice D"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"/>
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="145dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        android:contentDescription="@null"
-        app:srcCompat="@drawable/googledaydream" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:background="@drawable/qst"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/sendqstbtn"
         android:onClick="sendQuestion"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"

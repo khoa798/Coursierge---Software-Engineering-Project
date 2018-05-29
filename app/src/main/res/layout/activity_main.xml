@@ -6,28 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.jhacks.vrclassroom.MainActivity"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp">
-    <!--android:background="@drawable/rectangle">-->
+    tools:layout_editor_absoluteY="0dp"
+    android:background="@drawable/minimal">
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/classroom"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/whitelogo"
         android:contentDescription="@null"
         android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/classroom" />
+        app:srcCompat="@drawable/whitelogo" />
 
     <Button
         android:id="@+id/professor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/profbtn"
         android:contentDescription="@null"
         app:layout_constraintBottom_toTopOf="@+id/student"
@@ -38,7 +37,7 @@
         android:id="@+id/student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/studbtn"
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
