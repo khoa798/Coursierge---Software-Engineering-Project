@@ -9,20 +9,20 @@ public class Question {
     private String choiceB;
     private String choiceC;
     private String choiceD;
-    private String correctAnswer;
+    //private String correctAnswer;
     public Question()
     {
         // Empty constructor requirement by Firebase deserializer
     }
 
-    public Question(String questionText, String choiceA, String choiceB, String choiceC, String choiceD, String correctAnswer)
+    public Question(String questionText, String choiceA, String choiceB, String choiceC, String choiceD)
     {
         this.questionText = questionText;
         this.choiceA = choiceA;
         this.choiceB = choiceB;
         this.choiceC = choiceC;
         this.choiceD = choiceD;
-        this.correctAnswer = correctAnswer;
+        //this.correctAnswer = correctAnswer;
     }
 
     public String getQuestionText() { return questionText; }
@@ -31,12 +31,20 @@ public class Question {
     public String getChoiceB() { return choiceB; }
     public String getChoiceC() { return choiceC; }
     public String getChoiceD() { return choiceD; }
-    public String getCorrectAnswer() { return correctAnswer; }
+    public void setQuestion(String questionChoice) { this.questionText = questionChoice; }
+    public void setChoiceA(String answerChoice) { this.choiceA = answerChoice; }
+    public void setChoiceB(String answerChoice) { this.choiceB = answerChoice; }
+    public void setChoiceC(String answerChoice) { this.choiceC = answerChoice; }
+    public void setChoiceD(String answerChoice) { this.choiceD = answerChoice; }
+    //public String getCorrectAnswer() { return correctAnswer; }
 
+/*
     public boolean isCorrectAnswer(String selectedAnswer)
     {
         return (selectedAnswer.equals(correctAnswer));
     }
+
+    */
 
     @Override
     public String toString(){

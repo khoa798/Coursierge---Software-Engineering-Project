@@ -27,7 +27,9 @@ public class AskQuestion extends AppCompatActivity {
 
     public void sendQuestion(View view){
         EditText questionEditText;
-        allChoices = grabValidChoices();
+        //allChoices = grabValidChoices();
+        Question questionObject = new Question();
+        questionObject = grabValidChoices();
         questionEditText = findViewById(R.id.questionText);
         question = questionEditText.getText().toString().trim();
         Toast confirmQuestion; // Notifier for question input
@@ -43,17 +45,19 @@ public class AskQuestion extends AppCompatActivity {
         else
         {
             String myQuestionTag = question;
+            questionObject.setQuestion(question);
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference(myQuestionTag);
+            DatabaseReference myRef = database.getReference();
+            //DatabaseReference questionsRef = database.child("questions");
             // Read from the database
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    String value = dataSnapshot.getValue(String.class);
-                    Log.d(logTag, "Value is: " + value);
+                    //String value = dataSnapshot.getValue(String.class);
+                    //Log.d(logTag, "Value is: " + value);
                 }
 
                 @Override
@@ -64,8 +68,8 @@ public class AskQuestion extends AppCompatActivity {
             });
 
             // If we do have choices to choose from then save the data to the database.
-            if (allChoices.length() > 0) {
-                myRef.setValue(allChoices);
+            if (questionObject != null) {
+                myRef.child("questions").child(myQuestionTag).setValue(questionObject);
                 String text = "Question sent!";
                 confirmQuestion = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
                 confirmQuestion.show();
@@ -86,12 +90,12 @@ public class AskQuestion extends AppCompatActivity {
 
     }
 
-    private String grabValidChoices(){
+    private Question grabValidChoices(){
 
         // Remember to delimit by comma for questions
 
-        String choicesToSend = "";
-
+        //String choicesToSend = "";
+        Question myQuestion = new Question();
 
         choiceA = findViewById(R.id.editTextA);
         choiceB = findViewById(R.id.editTextB);
@@ -108,34 +112,42 @@ public class AskQuestion extends AppCompatActivity {
         // If so, concatenate to be used later.
         if (optionA.length() > 0)
         {
+            myQuestion.setChoiceA(optionA);
+            /*
             if (choicesToSend.length() == 0)
                 choicesToSend = optionA;
             else
                 choicesToSend = choicesToSend + "," + optionA;
+                */
         }
         if (optionB.length() > 0)
         {
+            myQuestion.setChoiceB(optionB);
+            /*
             if (choicesToSend.length() == 0)
                 choicesToSend = optionB;
             else
                 choicesToSend = choicesToSend + "," + optionB;
+            */
         }
         if (optionC.length() > 0)
         {
-            if (choicesToSend.length() == 0)
-                choicesToSend = optionC;
-            else
-                choicesToSend = choicesToSend + "," + optionC;
+            myQuestion.setChoiceC(optionC);
+            // if (choicesToSend.length() == 0)
+            //     choicesToSend = optionC;
+            // else
+            //     choicesToSend = choicesToSend + "," + optionC;
         }
         if (optionD.length() > 0)
         {
-            if (choicesToSend.length() == 0)
-                choicesToSend = optionD;
-            else
-                choicesToSend = choicesToSend + "," + optionD;
+            myQuestion.setChoiceD(optionD);
+            // if (choicesToSend.length() == 0)
+            //     choicesToSend = optionD;
+            // else
+            //     choicesToSend = choicesToSend + "," + optionD;
         }
 
-        return choicesToSend;
+        return myQuestion;
     }
 
 }
