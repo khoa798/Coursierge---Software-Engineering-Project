@@ -197,9 +197,6 @@ public class StudSession extends AppCompatActivity implements  Session.SessionLi
             showMessage(data, remote);
         }*/
 
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        //SOMEONE LOOK AT THIS
-        ///////////////////////////////////////////////////////////////////////////////////////////
         Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
         //METADATA = mSession.getConnection().getData();
         Log.i(LOG_TAG, "Question::: " + data);

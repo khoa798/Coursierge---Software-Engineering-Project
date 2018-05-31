@@ -100,7 +100,6 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
-    //small change
 
     @AfterPermissionGranted(RC_VIDEO_APP_PERM)
     private void requestPermissions() {

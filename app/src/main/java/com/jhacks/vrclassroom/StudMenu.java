@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
+import android.widget.Toast;
 
 
 public class StudMenu extends AppCompatActivity {
@@ -21,6 +21,13 @@ public class StudMenu extends AppCompatActivity {
         Intent intent = new Intent(this, ViewQuestions.class);
         startActivity(intent);
     }
+
+    public void onClickRequestAudio(View view){
+
+        //Toast.makeText(this, "Button Works", Toast.LENGTH_SHORT).show();
+
+    }
+
 }
 
 
