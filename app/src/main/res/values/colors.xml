@@ -3,4 +3,5 @@
     <color name="colorPrimary">#FFFF</color>
     <color name="colorPrimaryDark">#FF9966</color>
     <color name="colorAccent">#666</color>
+    <color name="questionColor">#222222</color>
 </resources>

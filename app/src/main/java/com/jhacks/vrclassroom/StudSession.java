@@ -2,10 +2,12 @@ package com.jhacks.vrclassroom;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -179,13 +181,14 @@ public class StudSession extends AppCompatActivity implements  Session.SessionLi
         finish();
     }
 
-    /*@Override
-    protected void onSignalReceived(Session session, String type, String data, Connection connection) {
-        String myConnectionId = session.getConnection().getConnectionId();
-        if (connection != null && connection.getConnectionId().equals(myConnectionId)) {
-            // Signal received from another client
-        }
-    }*/
+
+    public void onClickMore(View view){
+        Intent intent = new Intent(this, StudMenu.class);
+        startActivity(intent);
+    }
+
+
+
     @Override
     public void onSignalReceived(Session session, String type, String data, Connection connection) {
 

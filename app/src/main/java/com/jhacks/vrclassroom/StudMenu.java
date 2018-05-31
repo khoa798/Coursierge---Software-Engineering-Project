@@ -1,3 +1,40 @@
+package com.jhacks.vrclassroom;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+
+
+public class StudMenu extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_stud_menu);
+    }
+
+
+    public void onClickViewQuestions(View view)
+    {
+        Intent intent = new Intent(this, ViewQuestions.class);
+        startActivity(intent);
+    }
+}
+
+
+/*
+
+
+
+
+
+
+
+
+
+
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,17 +45,6 @@
     tools:layout_editor_absoluteY="0dp"
     tools:context="com.jhacks.vrclassroom.ProfMenu"
     android:background="@drawable/minimal">
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/askbtn"
-        android:onClick="onClickAskQuestion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logo"
@@ -34,12 +60,26 @@
     <Button
         android:id="@+id/viewResponsesButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/viewrespbtn"
         android:onClick="onClickViewResponses"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */

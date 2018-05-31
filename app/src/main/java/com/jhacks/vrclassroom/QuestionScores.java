@@ -29,10 +29,10 @@ public class QuestionScores {
     public String getScoreC() { return scoreC; }
     public String getScoreD() { return scoreD; }
     public void setQuestion(String questionChoice) { this.questionText = questionChoice; }
-    public void setscoreA(String answerScore) { this.scoreA = answerScore; }
-    public void setscoreB(String answerScore) { this.scoreB = answerScore; }
-    public void setscoreC(String answerScore) { this.scoreC = answerScore; }
-    public void setscoreD(String answerScore) { this.scoreD = answerScore; }
+    public void setScoreA(String answerScore) { this.scoreA = answerScore; }
+    public void setScoreB(String answerScore) { this.scoreB = answerScore; }
+    public void setScoreC(String answerScore) { this.scoreC = answerScore; }
+    public void setScoreD(String answerScore) { this.scoreD = answerScore; }
 
 
     @Override
