@@ -22,7 +22,7 @@ public class Question {
         this.choiceB = choiceB;
         this.choiceC = choiceC;
         this.choiceD = choiceD;
-        //this.correctAnswer = correctAnswer;
+
     }
 
     public String getQuestionText() { return questionText; }
@@ -36,15 +36,7 @@ public class Question {
     public void setChoiceB(String answerChoice) { this.choiceB = answerChoice; }
     public void setChoiceC(String answerChoice) { this.choiceC = answerChoice; }
     public void setChoiceD(String answerChoice) { this.choiceD = answerChoice; }
-    //public String getCorrectAnswer() { return correctAnswer; }
 
-/*
-    public boolean isCorrectAnswer(String selectedAnswer)
-    {
-        return (selectedAnswer.equals(correctAnswer));
-    }
-
-    */
 
     @Override
     public String toString(){
