@@ -25,6 +25,8 @@ public class AskQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_ask_question);
     }
 
+
+    // method to send questions to firebase
     public void sendQuestion(View view){
         EditText questionEditText;
         //allChoices = grabValidChoices();
