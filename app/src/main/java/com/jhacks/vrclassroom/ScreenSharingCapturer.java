@@ -9,102 +9,102 @@ import android.view.View;
 import com.opentok.android.BaseVideoCapturer;
 
 public class ScreenSharingCapturer extends BaseVideoCapturer {
-    private Context mContext;
-    private boolean capturing = false;
-    private View contentView;
+    private static final int FPS = 15;
 
-    private int fps = 15;
-    private int width = 0;
-    private int height = 0;
-    private int[] frame;
+    private boolean mCapturerHasStarted;
+    private boolean mCapturerIsPaused;
+    private CaptureSettings mCapturerSettings;
+    private View mContentView;
+    private int mWidth;
+    private int mHeight;
+    private Handler mFrameProducerHandler;
+    private long mFrameProducerIntervalMillis = 1000 / FPS;
 
-    private Bitmap bmp;
-    private Canvas canvas;
-    private Handler mHandler = new Handler();
+    private int[] frameBuffer;
 
-    private Runnable newFrame = new Runnable() {
+    private Runnable mFrameProducer = new Runnable() {
         @Override
         public void run() {
-            if (capturing) {
-                int width = contentView.getWidth();
-                int height = contentView.getHeight();
+            int width = mContentView.getWidth();
+            int height = mContentView.getHeight();
 
-                if (frame == null ||
-                        ScreenSharingCapturer.this.width != width ||
-                        ScreenSharingCapturer.this.height != height) {
+            if (frameBuffer == null || mWidth != width || mHeight != height) {
+                mWidth = width;
+                mHeight = height;
+                frameBuffer = new int[mWidth * mHeight];
+            }
 
-                    ScreenSharingCapturer.this.width = width;
-                    ScreenSharingCapturer.this.height = height;
+            mContentView.setDrawingCacheEnabled(true);
+            mContentView.buildDrawingCache();
+            Bitmap bmp = mContentView.getDrawingCache();
+            if (bmp != null) {
+                bmp.getPixels(frameBuffer, 0, width, 0, 0, width, height);
+                mContentView.setDrawingCacheEnabled(false);
+                provideIntArrayFrame(frameBuffer, ARGB, width, height, 0, false);
+            }
 
-                    if (bmp != null) {
-                        bmp.recycle();
-                        bmp = null;
-                    }
-
-                    bmp = Bitmap.createBitmap(width,
-                            height, Bitmap.Config.ARGB_8888);
-
-                    canvas = new Canvas(bmp);
-                    frame = new int[width * height];
-                }
-                canvas.save(Canvas.ALL_SAVE_FLAG);
-                canvas.translate(-contentView.getScrollX(), - contentView.getScrollY());
-                contentView.draw(canvas);
-
-                bmp.getPixels(frame, 0, width, 0, 0, width, height);
-                provideIntArrayFrame(frame, ARGB, width, height, 0, false);
-
-                canvas.restore();
-                mHandler.postDelayed(newFrame, 1000 / fps);
+            if (mCapturerHasStarted && !mCapturerIsPaused) {
+                mFrameProducerHandler.postDelayed(mFrameProducer, mFrameProducerIntervalMillis);
             }
         }
     };
 
-    public ScreenSharingCapturer(Context context, View view) {
-        this.mContext = context;
-        this.contentView = view;
+    public ScreenSharingCapturer(View view) {
+        mContentView = view;
+        mFrameProducerHandler = new Handler();
     }
 
     @Override
-    public void init() {}
+    public void init() {
+        mCapturerHasStarted = false;
+        mCapturerIsPaused = false;
 
-    @Override
-    public void destroy() {}
-
-    @Override
-    public void onResume() {}
-
-    @Override
-    public void onPause() {}
+        mCapturerSettings = new CaptureSettings();
+        mCapturerSettings.fps = FPS;
+        mCapturerSettings.width = mWidth;
+        mCapturerSettings.height = mHeight;
+        mCapturerSettings.format = BaseVideoCapturer.ARGB;
+    }
 
     @Override
     public int startCapture() {
-        capturing = true;
-
-        mHandler.postDelayed(newFrame, 1000 / fps);
+        mCapturerHasStarted = true;
+        mFrameProducerHandler.postDelayed(mFrameProducer, mFrameProducerIntervalMillis);
         return 0;
     }
 
     @Override
     public int stopCapture() {
-        capturing = false;
-        mHandler.removeCallbacks(newFrame);
+        mCapturerHasStarted = false;
+        mFrameProducerHandler.removeCallbacks(mFrameProducer);
         return 0;
     }
 
     @Override
     public boolean isCaptureStarted() {
-        return capturing;
+        return mCapturerHasStarted;
     }
 
     @Override
     public CaptureSettings getCaptureSettings() {
-
-        CaptureSettings settings = new CaptureSettings();
-        settings.fps = fps;
-        settings.width = width;
-        settings.height = height;
-        settings.format = ARGB;
-        return settings;
+        return mCapturerSettings;
     }
+
+    @Override
+    public void destroy() {
+
+    }
+
+    @Override
+    public void onPause() {
+        mCapturerIsPaused = true;
+
+    }
+
+    @Override
+    public void onResume() {
+        mCapturerIsPaused = false;
+        mFrameProducerHandler.postDelayed(mFrameProducer, mFrameProducerIntervalMillis);
+    }
+
 }
