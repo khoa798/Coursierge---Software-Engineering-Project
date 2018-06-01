@@ -2,6 +2,7 @@ package com.jhacks.vrclassroom;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -138,7 +139,8 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         mPublisher = new Publisher.Builder(this).build();
         mPublisher.setPublisherListener(this);
 
-        mPublisherViewContainer.addView(mPublisher.getView());
+        //mPublisherViewContainer.addView(mPublisher.getView());
+        mPublisherViewContainer.addView(mPublisher.getView(), Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels);
         mSession.publish(mPublisher);
     }
 
