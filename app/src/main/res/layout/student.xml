@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/imageViewStu"
-        android:layout_width="125dp"
+        android:layout_width="160dp"
         android:layout_height="100dp"
         android:layout_marginTop="70dp"
         android:contentDescription="@null"
@@ -42,8 +42,8 @@
         android:id="@+id/joinSes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/joinsesh"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/joinsessionbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studSesId" />

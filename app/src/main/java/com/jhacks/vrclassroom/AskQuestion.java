@@ -25,40 +25,41 @@ public class AskQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_ask_question);
     }
 
+
+    // method to send questions to firebase
     public void sendQuestion(View view){
         EditText questionEditText;
-        allChoices = grabValidChoices();
+        //allChoices = grabValidChoices();
+        Question questionObject = new Question();
+        questionObject = grabValidChoices();
         questionEditText = findViewById(R.id.questionText);
         question = questionEditText.getText().toString().trim();
-        String text = "No Question Asked!";
-        Toast mToastToShow; // Notifier for question input
-        String referenceTagQuestions = "";
+        Toast confirmQuestion; // Notifier for question input
         final String logTag = "Professor database: ";
 
         // Make sure a question field has input (Question is being asked)
-        if (question.length() < 0)
+        if (question.length() == 0)
         {
-
-            mToastToShow = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
-            mToastToShow.show();
+            String text = "No Question Asked!";
+            confirmQuestion = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
+            confirmQuestion.show();
         }
-        else {
-            referenceTagQuestions = question;
-            mToastToShow = Toast.makeText(AskQuestion.this, "Question sent!", Toast.LENGTH_SHORT);
-
-
-
+        else
+        {
+            String myQuestionTag = question;
+            questionObject.setQuestion(question);
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference(referenceTagQuestions);
+            DatabaseReference myRef = database.getReference();
+            //DatabaseReference questionsRef = database.child("questions");
             // Read from the database
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    String value = dataSnapshot.getValue(String.class);
-                    Log.d(logTag, "Value is: " + value);
+                    //String value = dataSnapshot.getValue(String.class);
+                    //Log.d(logTag, "Value is: " + value);
                 }
 
                 @Override
@@ -69,26 +70,34 @@ public class AskQuestion extends AppCompatActivity {
             });
 
             // If we do have choices to choose from then save the data to the database.
-            if (allChoices.length() > 0) {
-                // Place holder for now - Set value of reference to contain these values
-                myRef.setValue(allChoices);
+            if (questionObject != null) {
+                myRef.child("questions").child(myQuestionTag).setValue(questionObject);
+                String text = "Question sent!";
+                confirmQuestion = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
+                confirmQuestion.show();
+                finish();
+            }
+            else
+            {
+                String confirmChoices = "No choices!";
+                confirmQuestion = Toast.makeText(AskQuestion.this, confirmChoices, Toast.LENGTH_SHORT);
+                confirmQuestion.show();
             }
 
 
-            mToastToShow.show();
-            finish();
+
         }
 
 
 
     }
 
-    private String grabValidChoices(){
+    private Question grabValidChoices(){
 
         // Remember to delimit by comma for questions
 
-        String choicesToSend = "";
-
+        //String choicesToSend = "";
+        Question myQuestion = new Question();
 
         choiceA = findViewById(R.id.editTextA);
         choiceB = findViewById(R.id.editTextB);
@@ -104,15 +113,43 @@ public class AskQuestion extends AppCompatActivity {
         // Check if there was an option typed in for choices.
         // If so, concatenate to be used later.
         if (optionA.length() > 0)
-            choicesToSend = choicesToSend + "," + optionA;
-        if (optionB.length() >0)
-            choicesToSend = choicesToSend + "," + optionB;
-        if (optionC.length() >0)
-            choicesToSend = choicesToSend + "," + optionC;
-        if (optionD.length() >0)
-            choicesToSend = choicesToSend + "," + optionD;
+        {
+            myQuestion.setChoiceA(optionA);
+            /*
+            if (choicesToSend.length() == 0)
+                choicesToSend = optionA;
+            else
+                choicesToSend = choicesToSend + "," + optionA;
+                */
+        }
+        if (optionB.length() > 0)
+        {
+            myQuestion.setChoiceB(optionB);
+            /*
+            if (choicesToSend.length() == 0)
+                choicesToSend = optionB;
+            else
+                choicesToSend = choicesToSend + "," + optionB;
+            */
+        }
+        if (optionC.length() > 0)
+        {
+            myQuestion.setChoiceC(optionC);
+            // if (choicesToSend.length() == 0)
+            //     choicesToSend = optionC;
+            // else
+            //     choicesToSend = choicesToSend + "," + optionC;
+        }
+        if (optionD.length() > 0)
+        {
+            myQuestion.setChoiceD(optionD);
+            // if (choicesToSend.length() == 0)
+            //     choicesToSend = optionD;
+            // else
+            //     choicesToSend = choicesToSend + "," + optionD;
+        }
 
-        return choicesToSend;
+        return myQuestion;
     }
 
 }

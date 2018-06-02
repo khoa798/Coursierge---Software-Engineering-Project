@@ -18,8 +18,8 @@ public class ProfMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickViewQuestions(View view){
-        Intent intent = new Intent(this, ViewQuestions.class);
+    public void onClickViewResponses(View view){
+        Intent intent = new Intent(this, ViewResponses.class);
         startActivity(intent);
     }
 

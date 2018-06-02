@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/imageViewProf"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginTop="70dp"
         android:contentDescription="@null"
@@ -42,8 +42,8 @@
         android:id="@+id/startSes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/startsesh"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/startsessionbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profSesId" />

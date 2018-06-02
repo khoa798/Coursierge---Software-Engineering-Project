@@ -30,10 +30,11 @@
         android:id="@+id/button3"
         android:layout_width="200dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/more"
         android:onClick="onClickMore"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

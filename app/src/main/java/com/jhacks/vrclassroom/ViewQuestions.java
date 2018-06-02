@@ -13,6 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+// Base code for RecyclerView taken from https://www.androidhive.info/2016/01/android-working-with-recycler-view/
+
 public class ViewQuestions extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
@@ -23,6 +25,7 @@ public class ViewQuestions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_view_questions2);
 
         DatabaseReference mDatabase;
@@ -57,7 +60,6 @@ public class ViewQuestions extends AppCompatActivity {
                 System.out.println("The read failed.");
             }
         });
-
 
 
     }
