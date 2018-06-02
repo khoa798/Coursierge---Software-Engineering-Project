@@ -30,6 +30,7 @@
             android:label="Streaming" />
         <activity android:name=".ProfMenu" />
         <activity android:name=".AskQuestion"></activity>
+        <activity android:name=".ViewQuestions"></activity>
     </application>
 
 </manifest>
