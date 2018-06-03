@@ -19,6 +19,7 @@ public class StudMenu extends AppCompatActivity {
     public void onClickViewQuestions(View view)
     {
         Intent intent = new Intent(this, ViewQuestions.class);
+        intent.putExtra("Student", "true");
         startActivity(intent);
     }
 }

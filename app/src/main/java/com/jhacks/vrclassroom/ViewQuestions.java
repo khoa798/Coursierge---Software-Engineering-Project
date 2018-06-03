@@ -1,5 +1,6 @@
 package com.jhacks.vrclassroom;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,7 +39,15 @@ public class ViewQuestions extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);*/
         //get questions from firebase here
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("s_questions");
+
+        String parentActivityRef = getIntent().getStringExtra("Student");
+        if (parentActivityRef.equals("true")) {
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("questions");
+        } else {
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("s_questions");
+        }
+
+        //mDatabase = FirebaseDatabase.getInstance().getReference().child("s_questions");
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
