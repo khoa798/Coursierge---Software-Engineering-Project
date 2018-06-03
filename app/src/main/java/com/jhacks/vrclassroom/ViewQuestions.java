@@ -38,7 +38,7 @@ public class ViewQuestions extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);*/
         //get questions from firebase here
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("questions");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("s_questions");
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
