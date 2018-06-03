@@ -11,8 +11,10 @@ import java.util.ArrayList;
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
     private ArrayList<String> mDataset; //data is a list of JSON Objects from Firebase
+    private RecycleViewClickListener mListener;
 
-    public RVAdapter(ArrayList<String> myDataset) {
+    public RVAdapter(ArrayList<String> myDataset, RecycleViewClickListener listener) {
+        this.mListener = listener;
         this.mDataset = myDataset;
     }
 
@@ -21,7 +23,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         // create a new view
         View vw = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.questions_row_layout, parent, false);
-        ViewHolder vh = new ViewHolder(vw);
+        ViewHolder vh = new ViewHolder(vw, mListener);
         return vh;
     }
 
@@ -38,11 +40,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mTextView;
-        public ViewHolder (View v) {
+        private RecycleViewClickListener mListener;
+
+        public ViewHolder (View v, RecycleViewClickListener listener) {
             super(v);
+            mListener = listener;
+            v.setOnClickListener(this);
             this.mTextView = (TextView) v.findViewById(R.id.questionText);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mListener.onClick(view, getAdapterPosition(), mDataset.get(getAdapterPosition()));
+            //System.out.println("CLICKED ITEM STRING: " + mDataset.get(getAdapterPosition()));
         }
     }
 }

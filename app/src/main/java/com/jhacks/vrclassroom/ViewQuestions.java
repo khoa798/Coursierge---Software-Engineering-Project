@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static java.security.AccessController.getContext;
 
 // Base code for RecyclerView taken from https://www.androidhive.info/2016/01/android-working-with-recycler-view/
 
@@ -56,8 +60,24 @@ public class ViewQuestions extends AppCompatActivity {
                     arrli.add(ds.getKey());
                 }
                 System.out.println("ARRLI: " + arrli);
+
+                RecycleViewClickListener listener = new RecycleViewClickListener() {
+                    @Override
+                    public void onClick(View view, int position, String text) {
+                        System.out.println("Position: " + position + " " + text);
+                        ArrayList<String> choices = new ArrayList<>();
+                        mDatabase.addValueEventListener(new ValueEventListener() {
+
+
+
+
+
+                        });
+                    }
+                };
+
                 mRecyclerView = findViewById(R.id.questionView);
-                mAdapter = new RVAdapter(arrli);
+                mAdapter = new RVAdapter(arrli, listener);
                 mRecyclerView.setHasFixedSize(true);
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(mAdapter);
