@@ -18,10 +18,11 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/flip"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/camera_flip"
         android:onClick="onClickSendMessage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
