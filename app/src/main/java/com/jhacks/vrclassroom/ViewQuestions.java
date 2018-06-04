@@ -30,7 +30,6 @@ public class ViewQuestions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_view_questions2);
 
         DatabaseReference mDatabase;
@@ -47,12 +46,75 @@ public class ViewQuestions extends AppCompatActivity {
         String parentActivityRef = getIntent().getStringExtra("Student");
         if (parentActivityRef.equals("true")) {
             mDatabase = FirebaseDatabase.getInstance().getReference().child("questions");
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        System.out.println("CURRENT KEY: " + ds.getKey());
+                        arrli.add(ds.getKey());
+                    }
+                    System.out.println("ARRLI: " + arrli);
+
+                    RecycleViewClickListener listener = new RecycleViewClickListener() {
+                        @Override
+                        public void onClick(View view, int position, String text) {
+                            System.out.println("Position: " + position + " " + text);
+                            Intent intent = new Intent(ViewQuestions.this, ViewChoices.class);
+                            intent.putExtra("Text", text);
+                            intent.putExtra("Position", position);
+                            startActivity(intent);
+
+                        }
+                    };
+
+                    mRecyclerView = findViewById(R.id.questionView);
+                    mAdapter = new RVAdapter(arrli, listener);
+                    mRecyclerView.setHasFixedSize(true);
+                    mRecyclerView.setLayoutManager(mLayoutManager);
+                    mRecyclerView.setAdapter(mAdapter);
+                    //mAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed.");
+                }
+            });
         } else {
             mDatabase = FirebaseDatabase.getInstance().getReference().child("s_questions");
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        System.out.println("CURRENT KEY: " + ds.getKey());
+                        arrli.add(ds.getKey());
+                    }
+                    System.out.println("ARRLI: " + arrli);
+
+                    RecycleViewClickListener listener = new RecycleViewClickListener() {
+                        @Override
+                        public void onClick(View view, int position, String text) {
+                            System.out.println("Position: " + position + " " + text);
+                        }
+                    };
+
+                    mRecyclerView = findViewById(R.id.questionView);
+                    mAdapter = new RVAdapter(arrli, listener);
+                    mRecyclerView.setHasFixedSize(true);
+                    mRecyclerView.setLayoutManager(mLayoutManager);
+                    mRecyclerView.setAdapter(mAdapter);
+                    //mAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed.");
+                }
+            });
         }
 
         //mDatabase = FirebaseDatabase.getInstance().getReference().child("s_questions");
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        /*mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -65,14 +127,11 @@ public class ViewQuestions extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, String text) {
                         System.out.println("Position: " + position + " " + text);
-                        ArrayList<String> choices = new ArrayList<>();
-                        mDatabase.addValueEventListener(new ValueEventListener() {
+                        Intent intent = new Intent(ViewQuestions.this, ViewChoices.class);
+                        intent.putExtra("Text", text);
+                        intent.putExtra("Position", position);
+                        startActivity(intent);
 
-
-
-
-
-                        });
                     }
                 };
 
@@ -88,7 +147,7 @@ public class ViewQuestions extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed.");
             }
-        });
+        });*/
 
 
     }

@@ -33,6 +33,7 @@
         <activity android:name=".ViewResponses" />
         <activity android:name=".StudMenu" />
         <activity android:name=".ViewQuestions"></activity>
+        <activity android:name=".ViewChoices"></activity>
     </application>
 
 </manifest>
