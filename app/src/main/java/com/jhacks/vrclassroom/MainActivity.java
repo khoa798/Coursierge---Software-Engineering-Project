@@ -8,11 +8,13 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    // onCreate is what the app does when it is first initialized
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // This button leads to the professor menu
         Button prof = findViewById(R.id.professor);
         prof.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // This button leads to the student menu
         Button student = findViewById(R.id.student);
         student.setOnClickListener(new View.OnClickListener() {
             @Override

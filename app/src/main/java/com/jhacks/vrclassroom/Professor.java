@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class Professor extends AppCompatActivity {
 
+    // Initializes the button for the professor to start stream
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class Professor extends AppCompatActivity {
         });
     }
 
+    // Starts the stream from the professors side
     public void onClickStartSes(View v) {
         EditText sesId = findViewById(R.id.profSesId);
         String sesIdString = sesId.getText().toString();

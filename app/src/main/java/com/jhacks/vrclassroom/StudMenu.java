@@ -9,13 +9,14 @@ import android.view.View;
 
 public class StudMenu extends AppCompatActivity {
 
+    // Initializes the buttons
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stud_menu);
     }
 
-
+    // This method connects a button leading to the View Questions activity
     public void onClickViewQuestions(View view)
     {
         Intent intent = new Intent(this, ViewQuestions.class);
@@ -23,6 +24,7 @@ public class StudMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // This method connects a button leading to the Ask Questions activity
     public void onClickAskQuestion(View view)
     {
         Intent intent = new Intent(this, AskQuestionStudent.class);
