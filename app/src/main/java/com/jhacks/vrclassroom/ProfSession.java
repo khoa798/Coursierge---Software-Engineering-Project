@@ -30,7 +30,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 
-public class ProfSession extends AppCompatActivity implements  Session.SessionListener, PublisherKit.PublisherListener  {
+public class ProfSession extends AppCompatActivity implements  Session.SessionListener, PublisherKit.PublisherListener {
 
     private static String API_KEY, SESSION_ID, TOKEN, NAME, METADATA; // = "46043342";
     //private static String SESSION_ID = "2_MX40NjA0MzM0Mn5-MTUxNjQ3NzQxODk3Mn5TZnV5MS9kMm9OcUdJQVpCVG9UVmFYR25-fg";
@@ -43,6 +43,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
     private Publisher mPublisher;
     private BaseVideoCapturer bVC;
     private FrameLayout mPublisherViewContainer;
+    private boolean videoPublished = true;
 
     public void fetchSessionConnectionData() {
         RequestQueue reqQueue = Volley.newRequestQueue(this);
@@ -68,7 +69,6 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
                     mSession.connect(TOKEN);
 
 
-
                 } catch (JSONException error) {
                     Log.e(LOG_TAG, "Web Service error: " + error.getMessage());
                 }
@@ -81,7 +81,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         }));
     }
 
-// Initial boot-up method
+    // Initial boot-up method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +103,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
 
     @AfterPermissionGranted(RC_VIDEO_APP_PERM)
     private void requestPermissions() {
-        String[] perms = { Manifest.permission.INTERNET, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO };
+        String[] perms = {Manifest.permission.INTERNET, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // initialize view objects from your layout
             mPublisherViewContainer = findViewById(R.id.publisher_container);
@@ -200,7 +200,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         finish();
     }
 
-    public void onClickSendMessage(View view){
+    public void onClickSendMessage(View view) {
         mPublisher.cycleCamera();
         mSession.sendSignal("chat", "Hello");
         Toast.makeText(this, "Camera switched", Toast.LENGTH_SHORT).show();
@@ -208,8 +208,20 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         Log.i(LOG_TAG, "METADATA::: " + METADATA);
     }
 
-    public void onClickMore(View view){
+    public void onClickMore(View view) {
         Intent intent = new Intent(this, ProfMenu.class);
         startActivity(intent);
+    }
+
+    //code to toggle video on and off
+    public void onClickToggleVideo(View view) {
+
+        if (videoPublished) {
+            mPublisher.setPublishVideo(false);
+            videoPublished = false;
+        } else {
+            mPublisher.setPublishVideo(true);
+            videoPublished = true;
+        }
     }
 }
