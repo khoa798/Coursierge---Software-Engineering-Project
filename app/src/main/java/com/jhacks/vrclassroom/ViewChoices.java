@@ -39,6 +39,7 @@ public class ViewChoices extends AppCompatActivity {
                     //System.out.println("CURRENT VALUE: " + ds.getValue());
                     choices.add(ds.getValue().toString());
                 }
+                
                 //System.out.println("CHOICES: " + choices);
                 TextView a = findViewById(R.id.choice1);
                 a.setText(choices.get(0));
