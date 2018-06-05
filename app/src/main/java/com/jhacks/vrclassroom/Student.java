@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class Student extends AppCompatActivity {
 
+    // Initializes a button for the student to join a stream
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +25,13 @@ public class Student extends AppCompatActivity {
         });
     }
 
+    // Student joins a session via session ID
     public void onClickJoinSes(View V) {
         // Get session id text from editText
         EditText sesId = findViewById(R.id.studSesId);
         String sesIdString = sesId.getText().toString();
 
         if (sesIdString.matches("")) {
-            //
             Toast.makeText(this, "Please insert a Class Name", Toast.LENGTH_LONG).show();
         }
         else {
