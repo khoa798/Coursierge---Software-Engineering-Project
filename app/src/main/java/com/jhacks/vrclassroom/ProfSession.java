@@ -133,7 +133,7 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         }
     }*/
 
-    // SessionListener methods
+    //----------------------------- SessionListener methods --------------------------------------
 
     @Override
     public void onConnected(Session session) {
@@ -168,8 +168,9 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         Log.e(LOG_TAG, "Session error: " + opentokError.getMessage());
     }
 
-    // PublisherListener methods
 
+    //--------------------------- PublisherListener methods ---------------------------------------
+    //Method used to connect the Publisher to the stream.
     @Override
     public void onStreamCreated(PublisherKit publisherKit, Stream stream) {
         Log.i(LOG_TAG, "Publisher onStreamCreated");
@@ -179,17 +180,19 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         //bVC.init();
     }
 
+    //Method used for stream destroyed system message.
     @Override
     public void onStreamDestroyed(PublisherKit publisherKit, Stream stream) {
         Log.i(LOG_TAG, "Publisher onStreamDestroyed");
     }
 
+    //Method used for error messages.
     @Override
     public void onError(PublisherKit publisherKit, OpentokError opentokError) {
         Log.e(LOG_TAG, "Publisher error: " + opentokError.getMessage());
     }
 
-    // Back disconnects session
+    //Method to disconnect session on back button click.
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -200,6 +203,9 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         finish();
     }
 
+
+    //Method to switch camera between front and back.
+    //Outputs a confirmation Toast.
     public void onClickSendMessage(View view) {
         mPublisher.cycleCamera();
         mSession.sendSignal("chat", "Hello");
@@ -208,12 +214,14 @@ public class ProfSession extends AppCompatActivity implements  Session.SessionLi
         Log.i(LOG_TAG, "METADATA::: " + METADATA);
     }
 
+
+    //method to open the Questions Page using the More Button
     public void onClickMore(View view) {
         Intent intent = new Intent(this, ProfMenu.class);
         startActivity(intent);
     }
 
-    //code to toggle video on and off
+    //Method to turn video streaming off using Toggle Video button/
     public void onClickToggleVideo(View view) {
 
         if (videoPublished) {
