@@ -13,7 +13,7 @@
         android:layout_height="42dp"
         android:layout_marginEnd="8dp"
         android:onClick="onClickMore"
-        android:background="@drawable/more"
+        android:background="@drawable/morebtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
