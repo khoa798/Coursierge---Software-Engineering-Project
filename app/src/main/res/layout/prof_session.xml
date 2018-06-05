@@ -51,5 +51,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/more" />
 
+    <Button
+        android:id="@+id/videostatus"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/videodisabled"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
