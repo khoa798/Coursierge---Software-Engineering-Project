@@ -33,39 +33,23 @@
 
     <Button
         android:id="@+id/more"
-        android:layout_width="200dp"
-        android:layout_height="42dp"
+        android:layout_width="205dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/morebtn"
         android:onClick="onClickMore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button6" />
+        app:layout_constraintStart_toEndOf="@id/togglevideo" />
 
     <Button
-        android:id="@+id/button6"
-<<<<<<< HEAD
-        android:layout_width="200dp"
-        android:layout_height="42dp"
+        android:id="@+id/togglevideo"
+        android:layout_width="205dp"
+        android:layout_height="50dp"
         android:background="@drawable/togglevideobtn"
-=======
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="500dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="236dp"
->>>>>>> d4d6a99b2a864bb70a0f4dd8000e78942020e0fa
         android:onClick="onClickToggleVideo"
-        android:text="Toggle Video"
         app:layout_constraintBottom_toBottomOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintEnd_toStartOf="@+id/publisher_container"
-        app:layout_constraintHorizontal_bias="0.0"
-=======
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
->>>>>>> d4d6a99b2a864bb70a0f4dd8000e78942020e0fa
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/more" />
 
 
 </android.support.constraint.ConstraintLayout>
