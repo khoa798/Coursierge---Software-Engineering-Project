@@ -14,10 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AskQuestion extends AppCompatActivity {
-    String question,optionA,optionB,optionC,optionD,allChoices;
+    String question,optionA,optionB,optionC,optionD;
     EditText choiceA, choiceB, choiceC, choiceD;
-
-
+    Question questionObject = new Question();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +28,15 @@ public class AskQuestion extends AppCompatActivity {
     // method to send questions to firebase
     public void sendQuestion(View view){
         EditText questionEditText;
-        //allChoices = grabValidChoices();
-        Question questionObject = new Question();
         questionObject = grabValidChoices();
         questionEditText = findViewById(R.id.questionText);
         question = questionEditText.getText().toString().trim();
         Toast confirmQuestion; // Notifier for question input
         final String logTag = "Professor database: ";
+        String allChoicesSelected = questionObject.getFlag();
 
         // Make sure a question field has input (Question is being asked)
-        if (question.length() == 0)
+        if (question.length() == 0 || allChoicesSelected.equals("false"))
         {
             String text = "No Question Asked!";
             confirmQuestion = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
@@ -47,7 +45,7 @@ public class AskQuestion extends AppCompatActivity {
         else
         {
             String myQuestionTag = question;
-            questionObject.setQuestion(question);
+            //questionObject.setQuestion(question);
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference();
@@ -94,6 +92,9 @@ public class AskQuestion extends AppCompatActivity {
 
     private Question grabValidChoices(){
 
+
+        Toast notifyValidInput; // Notifier for question input
+        String text = "Please have an input for all choices.";
         // Remember to delimit by comma for questions
 
         //String choicesToSend = "";
@@ -112,41 +113,21 @@ public class AskQuestion extends AppCompatActivity {
 
         // Check if there was an option typed in for choices.
         // If so, concatenate to be used later.
-        if (optionA.length() > 0)
+        if (optionA.length() > 0 && optionB.length() > 0 && optionC.length() > 0 && optionD.length() > 0)
         {
+
             myQuestion.setChoiceA(optionA);
-            /*
-            if (choicesToSend.length() == 0)
-                choicesToSend = optionA;
-            else
-                choicesToSend = choicesToSend + "," + optionA;
-                */
-        }
-        if (optionB.length() > 0)
-        {
             myQuestion.setChoiceB(optionB);
-            /*
-            if (choicesToSend.length() == 0)
-                choicesToSend = optionB;
-            else
-                choicesToSend = choicesToSend + "," + optionB;
-            */
-        }
-        if (optionC.length() > 0)
-        {
             myQuestion.setChoiceC(optionC);
-            // if (choicesToSend.length() == 0)
-            //     choicesToSend = optionC;
-            // else
-            //     choicesToSend = choicesToSend + "," + optionC;
-        }
-        if (optionD.length() > 0)
-        {
             myQuestion.setChoiceD(optionD);
-            // if (choicesToSend.length() == 0)
-            //     choicesToSend = optionD;
-            // else
-            //     choicesToSend = choicesToSend + "," + optionD;
+            myQuestion.setFlag("true");
+        }
+
+        else
+        {
+            notifyValidInput = Toast.makeText(AskQuestion.this, text, Toast.LENGTH_SHORT);
+            myQuestion.setFlag("false");
+            notifyValidInput.show();
         }
 
         return myQuestion;

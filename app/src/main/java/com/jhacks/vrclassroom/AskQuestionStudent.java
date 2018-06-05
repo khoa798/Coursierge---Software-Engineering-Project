@@ -42,7 +42,7 @@ public class AskQuestionStudent extends AppCompatActivity {
         {
             questionObject.setChoiceA("false");
             String myQuestionTag = question;
-            questionObject.setQuestion(question);
+
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference();

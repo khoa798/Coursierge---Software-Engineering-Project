@@ -4,42 +4,40 @@ package com.jhacks.vrclassroom;
 
 
 public class Question {
-    private String questionText;
+    //private String questionText;
     private String choiceA;
     private String choiceB;
     private String choiceC;
     private String choiceD;
-    //private String correctAnswer;
+    private String flagChoicesSelected;
     public Question()
     {
         // Empty constructor requirement by Firebase deserializer
     }
 
-    public Question(String questionText, String choiceA, String choiceB, String choiceC, String choiceD)
+    public Question(String choiceA, String choiceB, String choiceC, String choiceD, String flagChoicesSelected)
     {
-        this.questionText = questionText;
+       // this.questionText = questionText;
         this.choiceA = choiceA;
         this.choiceB = choiceB;
         this.choiceC = choiceC;
         this.choiceD = choiceD;
+        this.flagChoicesSelected = flagChoicesSelected;
 
     }
 
-    public String getQuestionText() { return questionText; }
+    //public String getQuestionText() { return questionText; }
 
     public String getChoiceA() { return choiceA; }
     public String getChoiceB() { return choiceB; }
     public String getChoiceC() { return choiceC; }
     public String getChoiceD() { return choiceD; }
-    public void setQuestion(String questionChoice) { this.questionText = questionChoice; }
+    public String getFlag() { return flagChoicesSelected; }
     public void setChoiceA(String answerChoice) { this.choiceA = answerChoice; }
     public void setChoiceB(String answerChoice) { this.choiceB = answerChoice; }
     public void setChoiceC(String answerChoice) { this.choiceC = answerChoice; }
     public void setChoiceD(String answerChoice) { this.choiceD = answerChoice; }
+    public void setFlag(String flag) { this.flagChoicesSelected = flag; }
 
 
-    @Override
-    public String toString(){
-        return questionText;
-    }
 }
