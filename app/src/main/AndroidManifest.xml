@@ -34,7 +34,8 @@
         <activity android:name=".StudMenu" />
         <activity android:name=".ViewQuestions" />
         <activity android:name=".ViewChoices" />
-        <activity android:name=".AskQuestionStudent"></activity>
+        <activity android:name=".AskQuestionStudent" />
+        <activity android:name=".answers"></activity>
     </application>
 
 </manifest>

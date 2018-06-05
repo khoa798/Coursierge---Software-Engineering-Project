@@ -2,6 +2,7 @@ package com.jhacks.vrclassroom;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -12,15 +13,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+// Uncomment Debug statements to DEBUG
+
 public class ViewChoices extends AppCompatActivity {
+    String textDebug = "[DEBUG]";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Log.d(textDebug,"onCreate");
         super.onCreate(savedInstanceState);
-        System.out.println("WITHIN VIEWResponse");
+
+        //System.out.println("WITHIN VIEWResponse");
         String question = getIntent().getStringExtra("Text");
         int position = getIntent().getIntExtra("Position", 0);
-        System.out.println("QUESTION: " + question + ", POSITION: " + position);
+        //System.out.println("QUESTION: " + question + ", POSITION: " + position);
         final ArrayList<String> choices = new ArrayList<>();
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("questions").child(question);
@@ -29,10 +36,10 @@ public class ViewChoices extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    System.out.println("CURRENT VALUE: " + ds.getValue());
+                    //System.out.println("CURRENT VALUE: " + ds.getValue());
                     choices.add(ds.getValue().toString());
                 }
-                System.out.println("CHOICES: " + choices);
+                //System.out.println("CHOICES: " + choices);
                 TextView a = findViewById(R.id.choice1);
                 a.setText(choices.get(0));
                 a = findViewById(R.id.choice2);
@@ -45,7 +52,7 @@ public class ViewChoices extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed.");
+                Log.d(textDebug, "The read failed.");
             }
         });
 
