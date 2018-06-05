@@ -2,42 +2,40 @@ package com.jhacks.vrclassroom;
 
 public class QuestionScores {
 
-    private String questionText;
-    private String scoreA;
-    private String scoreB;
-    private String scoreC;
-    private String scoreD;
+    //private int questionText;
+    private int scoreA;
+    private int scoreB;
+    private int scoreC;
+    private int scoreD;
 
     public QuestionScores()
     {
-        // Empty constructor requirement by Firebase deserializer
+
     }
 
-    public QuestionScores(String questionText,String scoreA, String scoreB, String scoreC, String scoreD)
+
+    public QuestionScores(int scoreA, int scoreB, int scoreC, int scoreD)
     {
-        this.scoreA = scoreA;
-        this.scoreB = scoreB;
-        this.scoreC = scoreC;
-        this.scoreD = scoreD;
+        this.scoreA = 0;
+        this.scoreB = 0;
+        this.scoreC = 0;
+        this.scoreD = 0;
 
     }
 
-    public String getQuestionText() { return questionText; }
+   // public int getQuestionText() { return questionText; }
 
-    public String getScoreA() { return scoreA; }
-    public String getScoreB() { return scoreB; }
-    public String getScoreC() { return scoreC; }
-    public String getScoreD() { return scoreD; }
-    public void setQuestion(String questionChoice) { this.questionText = questionChoice; }
-    public void setScoreA(String answerScore) { this.scoreA = answerScore; }
-    public void setScoreB(String answerScore) { this.scoreB = answerScore; }
-    public void setScoreC(String answerScore) { this.scoreC = answerScore; }
-    public void setScoreD(String answerScore) { this.scoreD = answerScore; }
+    public int getScoreA() { return scoreA; }
+    public int getScoreB() { return scoreB; }
+    public int getScoreC() { return scoreC; }
+    public int getScoreD() { return scoreD; }
+    //public void setQuestion(int questionChoice) { this.questionText = questionChoice; }
+    public void setScoreA(int answerScore) { this.scoreA = answerScore; }
+    public void setScoreB(int answerScore) { this.scoreB = answerScore; }
+    public void setScoreC(int answerScore) { this.scoreC = answerScore; }
+    public void setScoreD(int answerScore) { this.scoreD = answerScore; }
 
 
-    @Override
-    public String toString(){
-        return questionText;
-    }
+
 
 }
