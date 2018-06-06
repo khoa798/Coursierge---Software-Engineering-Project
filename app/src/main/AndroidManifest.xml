@@ -35,6 +35,7 @@
         <activity android:name=".ViewQuestions" />
         <activity android:name=".ViewChoices" />
         <activity android:name=".AskQuestionStudent" />
+        <activity android:name=".Chart"></activity>
     </application>
 
 </manifest>
