@@ -54,7 +54,7 @@ public class Chart extends AppCompatActivity {
                     QuestionScores currQuestion;
                     currQuestion = dataSnapshot.getValue(QuestionScores.class);
                     ArrayList<BarEntry> entries = new ArrayList<>();
-                    entries.add(currQuestion.)
+                    //entries.add(currQuestion.)
 
                 }
             }
