@@ -32,8 +32,9 @@ public class ViewChoices extends AppCompatActivity {
         //System.out.println("QUESTION: " + question + ", POSITION: " + position);
         final ArrayList<String> choices = new ArrayList<>();
 
+        // Grab a reference to the specific question we are looking at
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("questions").child(question);
-
+        // "Listen" for data i.e. grab a snapshot of the data initially.
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -44,10 +45,13 @@ public class ViewChoices extends AppCompatActivity {
                 
                 //System.out.println("CHOICES: " + choices);
                 Button a = findViewById(R.id.choice1);
+                // Set the first button to contain first multiple choice
                 a.setText(choices.get(0));
                 a.setOnClickListener(new View.OnClickListener() {
+                    // When button is clicked, we want to save the response to the database
                     @Override
                     public void onClick(View v) {
+                        // Grab reference to the specific question we are looking at and update the value for its score.
                         final DatabaseReference mScoresDatabase = FirebaseDatabase.getInstance().getReference().child("question-scores").child(question);
                         mScoresDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -57,10 +61,13 @@ public class ViewChoices extends AppCompatActivity {
                                 if(dataSnapshot.exists())
                                 {
                                     QuestionScores currQuestion;
+                                    // Grab all scores of the question
                                     currQuestion = dataSnapshot.getValue(QuestionScores.class);
                                     int scoreA = currQuestion.getScoreA();
+                                    // Update the one we selected
                                     currQuestion.setScoreA(scoreA+1);
                                     mScoresDatabase.setValue(currQuestion);
+                                    // Prompt user that score is saved
                                     String text = "Answer Selected!";
                                     Toast confirmChoice = Toast.makeText(ViewChoices.this, text, Toast.LENGTH_SHORT);
                                     confirmChoice.show();
@@ -97,6 +104,7 @@ public class ViewChoices extends AppCompatActivity {
 
                     }
                 });
+                // Set second button to contain second multiple choice
                 Button b = findViewById(R.id.choice2);
                 b.setText(choices.get(1));
                 b.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +160,7 @@ public class ViewChoices extends AppCompatActivity {
 
                     }
                 });
-
+                // Set third button to contain...
                 Button c = findViewById(R.id.choice3);
                 c.setText(choices.get(2));
                 c.setOnClickListener(new View.OnClickListener() {
@@ -208,7 +216,7 @@ public class ViewChoices extends AppCompatActivity {
 
                     }
                 });
-
+                // Set fourth button to contain...
                 Button d = findViewById(R.id.choice4);
                 d.setText(choices.get(3));
                 d.setOnClickListener(new View.OnClickListener() {

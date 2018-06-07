@@ -98,7 +98,7 @@ public class Chart extends AppCompatActivity {
                             return label.get((int) value);
                         }
                     });
-                    // Initialize the BarData class with arguments list of labels and dataset
+                    // Initialize the BarData class with argument dataset
                     BarData myData = new BarData(myDataset);
                     myData.setBarWidth(0.9f);
                     myChart.setData(myData);

@@ -26,11 +26,13 @@ public class ViewResponses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_responses);
+        //Get reference to database
         DatabaseReference mDatabase;
         final ArrayList<String> arrli = new ArrayList<String>();
-
+        // Set up framework necessary to display questions in a list format
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("questions");
+        // "Listen" for data changes means getting a snapshot of it once initially.
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -41,6 +43,7 @@ public class ViewResponses extends AppCompatActivity {
 
 
                 RecycleViewClickListener listener = new RecycleViewClickListener() {
+                    // When clicking on a question, display bar graph for it
                     @Override
                     public void onClick(View view, int position, String text) {
                         Intent intent = new Intent(ViewResponses.this, Chart.class);
@@ -50,7 +53,7 @@ public class ViewResponses extends AppCompatActivity {
 
                     }
                 };
-
+                // Properly display data by linking adapter to RecyclerView
                 mRecyclerView = findViewById(R.id.questionView);
                 mAdapter = new RVAdapter(arrli, listener);
                 mRecyclerView.setHasFixedSize(true);
