@@ -75,7 +75,7 @@ public class Chart extends AppCompatActivity {
                     entries.add(new BarEntry(3,currQuestion.getScoreD()));
                     // This object holds all data that belongs together and allows
                     // individual styling of this data
-                    BarDataSet myDataset = new BarDataSet(entries, "Answers");
+                    BarDataSet myDataset = new BarDataSet(entries, question);
                     //myDataset.setColors(ColorTemplate.PASTEL_COLORS);
                     // Colorize each set of data
                     myDataset.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -105,7 +105,7 @@ public class Chart extends AppCompatActivity {
                     myChart.setFitBars(true);
                     myChart.setBackgroundColor(getColor(R.color.gray));
                     myChart.getDescription().setEnabled(false);
-                    myChart.getLegend().setEnabled(false);
+                    //myChart.getLegend().setEnabled(false);
 
                     myChart.invalidate(); // refresh
                 }
