@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,6 +76,9 @@ public class Chart extends AppCompatActivity {
                     // This object holds all data that belongs together and allows
                     // individual styling of this data
                     BarDataSet myDataset = new BarDataSet(entries, "Answers");
+                    //myDataset.setColors(ColorTemplate.PASTEL_COLORS);
+                    // Colorize each set of data
+                    myDataset.setColors(ColorTemplate.COLORFUL_COLORS);
                     // Labels for the data
                     // We are not using choices as it contains one child that we do not need.
                     final ArrayList<String> label = new ArrayList<>();
@@ -102,7 +106,7 @@ public class Chart extends AppCompatActivity {
                     myChart.setBackgroundColor(getColor(R.color.gray));
                     myChart.getDescription().setEnabled(false);
                     myChart.getLegend().setEnabled(false);
-                    
+
                     myChart.invalidate(); // refresh
                 }
             }
