@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,15 +77,32 @@ public class Chart extends AppCompatActivity {
                     BarDataSet myDataset = new BarDataSet(entries, "Answers");
                     // Labels for the data
                     // We are not using choices as it contains one child that we do not need.
-                    ArrayList<String> label = new ArrayList<>();
+                    final ArrayList<String> label = new ArrayList<>();
                     label.add(choices.get(0));
                     label.add(choices.get(1));
                     label.add(choices.get(2));
                     label.add(choices.get(3));
+                    // Get X-axis for labels
+                    XAxis myXAxis = myChart.getXAxis();
+                    myXAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    myXAxis.setDrawGridLines(false);
+                    // Limit number of choices for label
+                    myXAxis.setLabelCount(4);
+                    myXAxis.setValueFormatter(new IAxisValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value, AxisBase axis) {
+                            return label.get((int) value);
+                        }
+                    });
                     // Initialize the BarData class with arguments list of labels and dataset
                     BarData myData = new BarData(myDataset);
+                    myData.setBarWidth(0.9f);
                     myChart.setData(myData);
-                    myChart.setBackgroundColor(getColor(R.color.white));
+                    myChart.setFitBars(true);
+                    myChart.setBackgroundColor(getColor(R.color.gray));
+                    myChart.getDescription().setEnabled(false);
+                    myChart.getLegend().setEnabled(false);
+                    
                     myChart.invalidate(); // refresh
                 }
             }
