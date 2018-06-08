@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.opentok.android.BaseVideoCapturer;
+
 import com.opentok.android.OpentokError;
 import com.opentok.android.Publisher;
 import com.opentok.android.PublisherKit;
@@ -30,13 +31,11 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 
-public class ProfSession extends AppCompatActivity implements  Session.SessionListener, PublisherKit.PublisherListener {
+public class ProfSession extends AppCompatActivity implements  Session.SessionListener, PublisherKit.PublisherListener  {
 
     private static String API_KEY, SESSION_ID, TOKEN, NAME, METADATA; // = "46043342";
-    //private static String SESSION_ID = "2_MX40NjA0MzM0Mn5-MTUxNjQ3NzQxODk3Mn5TZnV5MS9kMm9OcUdJQVpCVG9UVmFYR25-fg";
-    //private static String TOKEN = "T1==cGFydG5lcl9pZD00NjA0MzM0MiZzaWc9YTM5Zjk1YWM5MjAyZDllN2Q1ZWMwYzIyOGMwMGE3YmVmZWRmMDYzZTpzZXNzaW9uX2lkPTJfTVg0ME5qQTBNek0wTW41LU1UVXhOalEzTnpReE9EazNNbjVUWm5WNU1TOWtNbTlPY1VkSlFWcENWRzlVVm1GWVIyNS1mZyZjcmVhdGVfdGltZT0xNTE2NDc3NTU1Jm5vbmNlPTAuNTIxMjg4MzcyNDM4NTM5MyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTE5MDY5NTU0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private static final int RC_SETTINGS_SCREEN_PERM = 123;
+    //private static final int RC_SETTINGS_SCREEN_PERM = 123;
     private static final int RC_VIDEO_APP_PERM = 124;
 
     public static Session mSession;
